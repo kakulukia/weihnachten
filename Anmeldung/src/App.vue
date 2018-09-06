@@ -1,10 +1,16 @@
 <template lang="pug">
   v-app
-    v-content
+    v-content.app
       div.header
       router-view
-    // v-footer(:fixed="true")
-      span &copy; 2018
+    v-footer.px-3
+      span
+        | Copyright ©2018
+        |
+        a(href="http://peter-pan-grundschule.de/" target="_blank") Peter-Pan-Grundschule
+        |  |
+        a(href="http://peter-pan-grundschule.de/index.php/datenschutzerklaerung/"
+          target="_blank")  Datenschutzerklärung
 </template>
 
 <script>

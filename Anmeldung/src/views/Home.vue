@@ -142,8 +142,7 @@ export default {
           if (kids && kids > 0) {
             let discount = parseInt(kids / 10)
             sum += Math.max(0, adults - discount)
-          }
-          else {
+          } else {
             sum += adults
           }
         }
