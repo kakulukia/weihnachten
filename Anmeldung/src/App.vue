@@ -30,4 +30,11 @@ export default {
   background-size: contain
   background-repeat: no-repeat
   background-position: center top
+
+footer
+  a
+    color: #777
+    text-decoration: none
+    &:hover
+      color: #05A9C5
 </style>
