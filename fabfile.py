@@ -18,22 +18,8 @@ def deploy_only():
         print(green("updating from repository .."))
         run("git pull")
 
-
-def restart():
-    """ Restart nginx and the backend worker. """
-    print(green("restarting server .."))
-    run("sudo service uwsgi restart")
-
-
-def deploy():
-    deploy_only()
-    restart()
-
-
-def migrate():
-    """
     Pull all updates from the remote repository.
-    Migrates the database and installs new lib versions from requirements.
+    Migrates the dingls new lib versions from requirements.
     Static files are also collected.
     """
     deploy_only()

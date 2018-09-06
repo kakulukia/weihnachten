@@ -17,11 +17,12 @@ class Event(BaseModel):
     name = models.CharField(max_length=100, default='')
     location = models.TextField(default='')
     location_size = models.IntegerField(default=1)
+    for_schools = models.BooleanField('Für (Vor-)Schulkinder', default=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = 'Veranstaltung'
         verbose_name_plural = 'Veranstaltungen'
-        ordering = ['-start']
+        ordering = ['start']
 
     def __str__(self):
         return f'Veranstaltung vom {date_format(self.start, "d.m.Y")}'
@@ -31,19 +32,12 @@ class Event(BaseModel):
 
     @property
     def available_places(self):
-        return self.location_size - self.inquiries.aggregate(taken=Sum('places'))
+        places = self.inquiries.aggregate(kids=Sum('kids'), adults=Sum('adults'))
+        return self.location_size - (places['kids'] or 0) - (places['adults'] or 0)
 
 
 class InquiryDataManager(DataManager):
-
-    def valid(self):
-        return self.filter(email_valid=True)
-
-    def accepted(self):
-        return self.valid().filter(chosen=True, canceled=False)
-
-    def available(self):
-        return self.valid().filter(chosen=False, canceled=False, blocked=False)
+    pass
 
 
 class Inquiry(BaseModel):
@@ -52,7 +46,8 @@ class Inquiry(BaseModel):
     email = models.EmailField("E-Mail")
     phone = models.CharField("Telefonnummer", max_length=50)
     class_name = models.CharField('Schule / Klasse', max_length=150, default='')
-    places = models.IntegerField('Anzahl Plätze', default=0)
+    kids = models.IntegerField('Anzahl Kinder')
+    adults = models.IntegerField('Anzahl Erwachsene')
 
     paid = models.BooleanField("Bezahlt", default=False)
 

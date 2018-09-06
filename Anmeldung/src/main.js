@@ -44,6 +44,7 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+window.axios = api
 Vue.use(VueAxios, api)
 moment.locale('de')
 Vue.filter('moment', function (date, format) {
