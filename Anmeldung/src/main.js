@@ -16,18 +16,18 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#739c00'
   },
-  iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
+  iconfont: 'mdi'
 })
 
 Vue.config.productionTip = false
 
 // configure the api connection
 let host = window.location.hostname
-if (host === 'pepperz.de') {
-  host = 'admin.pepperz.de'
+if (host !== 'localhost') {
+  host = 'musical.pepperz.de'
 }
 let apiUrl = window.location.protocol + '//' + host
-if (window.location.hostname !== 'pepperz.de') {
+if (window.location.hostname === 'localhost') {
   apiUrl += ':8000'
 }
 apiUrl += '/api'

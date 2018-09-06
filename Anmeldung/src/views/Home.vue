@@ -3,6 +3,7 @@
     v-container(fluid grid-list-md)
       h1 Weihnachten fällt aus!
 
+      br
       p.
         Vielen Dank das Sie uns buchen möchten!
         #[br]#[br]

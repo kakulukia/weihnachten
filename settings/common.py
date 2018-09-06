@@ -15,7 +15,7 @@ SITE_ID = 1
 
 DEBUG = False
 ALLOWED_HOSTS = [
-    # 'server.url.here',
+    'musical.pepperz.de',
 ]
 INSTALLED_APPS = [
     # our own stuff
@@ -172,4 +172,5 @@ CONSTANCE_CONFIG = {
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
+    'peter-pan-grundschule.de',
 )
