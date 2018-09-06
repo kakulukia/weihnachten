@@ -1,7 +1,6 @@
 import '@babel/polyfill'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -15,7 +14,7 @@ import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#e09900'
+    primary: '#739c00'
   },
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
 })

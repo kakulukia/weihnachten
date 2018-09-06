@@ -45,7 +45,7 @@ class Inquiry(BaseModel):
     last_name = models.CharField("Nachname", max_length=50)
     email = models.EmailField("E-Mail")
     phone = models.CharField("Telefonnummer", max_length=50)
-    class_name = models.CharField('Schule / Klasse', max_length=150, default='')
+    class_name = models.CharField('Schule / Klasse', max_length=150, default='', blank=True)
     kids = models.IntegerField('Anzahl Kinder')
     adults = models.IntegerField('Anzahl Erwachsene')
 

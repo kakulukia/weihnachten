@@ -70,14 +70,15 @@
               :error-messages="form.errors.get('class_name')"
               @focus="form.errors.clear('class_name')")
 
-        v-alert(:value="form.errors.isDanger('non_field_errors')" type="warning")
+        v-alert(:value="form.errors.isDanger('non_field_errors')"
+                type="error" icon="new_releases")
           span(v-text="form.errors.get('non_field_errors')")
 
         p Gesamtbetrag:
           |
           |
           strong {{ total }}
-        v-btn.mx-0(:disabled="!valid" @click="submit") Buchen
+        v-btn.primary.mx-0(:disabled="!valid" @click="submit") Buchen
 
         br
         br
