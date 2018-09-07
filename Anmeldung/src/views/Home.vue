@@ -1,7 +1,8 @@
 <template lang="pug">
   div
     v-container(fluid grid-list-md)
-      h1 Weihnachten fällt aus!
+      img.elfo(src="/img/elfo.png")
+      h1.title Weihnachten fällt AUS!
 
       br
       p.
@@ -19,7 +20,9 @@
         Mit freundlichen Grüßen #[br]
         Ihr Musical AG Team
 
-      h4(v-if="!selectedEvent") Wählen sie einen Veranstaltungstag:
+      div.spacer
+
+      h4(v-if="!selectedEvent") Wählen Sie einen Veranstaltungstag:
 
       v-layout(row wrap)
         v-flex.event(v-for="event in events" xs12 sm6 md4 lg2 :key="event.id"  @click="selectedEvent = event")
@@ -158,6 +161,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
+.title
+  color: #d3353d
+
+@media screen and (min-width: 800px)
+  .elfo
+    height: 350px
+    float: right
+@media screen and (max-width: 799px)
+  .elfo
+    height: 200px
+    margin: 0 auto
+    display: block
+    margin-bottom: 30px
+
+
+.spacer
+  clear: both
+
 .event
   cursor: pointer
   .active
