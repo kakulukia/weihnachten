@@ -31,7 +31,8 @@
       h4(v-if="!selectedEvent") Wählen Sie einen Veranstaltungstag:
 
       v-layout(row wrap)
-        v-flex.event(v-for="event in events" xs12 sm6 md4 lg2 :key="event.id"  @click="selectedEvent = event")
+        v-flex.event(v-for="event in events" xs12 sm6 md4 lg2 :key="event.id" ref="form"
+                     @click="selectedEvent = event; showForm()")
           v-card(:class="{active: selectedEvent == event}")
             v-card-title
               div
@@ -44,7 +45,7 @@
 
       br
 
-      v-form(v-model="valid" ref="form" v-if="selectedEvent")
+      v-form#form(v-model="valid" ref="form" v-if="selectedEvent")
         v-layout(row wrap)
           v-flex(xs12 sm6)
             v-text-field(
@@ -134,8 +135,10 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    showForm: function () {
+      setTimeout(() => document.getElementById('form').scrollIntoView({behavior: "smooth"}), 50)
     }
-    // }
   },
   computed: {
     total: function () {
