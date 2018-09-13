@@ -122,14 +122,17 @@ class Inquiry(BaseModel):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
 
-        if not self.id:
-            self.send_mail('confirm_inquiry')
-            self.send_mail('new_inquiry', notify_admins=True)
-        else:
+        is_new = not bool(self.id)
+
+        if not is_new:
             if self.paid and not Inquiry.data.filter(id=self.id, paid=True).exists():
-                self.send_mail('confirm_payment', notify_admins=True)
+                self.send_mail('confirm_payment')
 
         super().save(force_insert, force_update, using, update_fields)
+
+        if is_new:
+            self.send_mail('confirm_inquiry')
+            self.send_mail('new_inquiry', notify_admins=True)
 
     def mark_permanent(self):
         self.permanent_seller = True
@@ -150,3 +153,18 @@ class Inquiry(BaseModel):
     def make_permanent(self, yes_no):
         self.permanent_seller = yes_no
         self.save()
+
+    @property
+    def places(self):
+        return self.kids + self.adults
+
+    @property
+    def amount(self):
+        sum = 0
+
+        sum += self.kids
+        if self.adults and self.adults > 0:
+            discount = int(self.kids / 10)
+            sum += max(0, self.adults - discount)
+
+        return str(sum * 3) + ',- €'

@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-content.app
-      div.header
+      div.header(style="background-image: url('img/header.png');")
       router-view
     v-footer.px-3
       span
@@ -25,7 +25,6 @@ export default {
 
 <style lang="sass">
 .header
-  background: url('/img/header.png')
   height: 20vw
   background-size: contain
   background-repeat: no-repeat

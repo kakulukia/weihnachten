@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # 3rd party apps
     "axes",
     "compressor",
+    'constance',
     'constance.backends.database',
     'corsheaders',
     "django_extensions",
@@ -152,12 +153,12 @@ COMPRESS_ENABLED = True
 # }
 
 # mail settings
-EMAIL_HOST = 'mail.pepperz.de'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'schichten@pepperz.de'
+EMAIL_HOST = 'securesmtp.t-online.de'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'musical@peter-pan-grundschule.de'
 EMAIL_HOST_PASSWORD = secrets.EMAIL_PASSWORD
-EMAIL_USE_TLS = True
-SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'Peter Pan <schichten@pepperz.de>'
+EMAIL_USE_SSL = True
+SERVER_EMAIL = DEFAULT_FROM_EMAIL = 'Peter Pan Musical AG <musical@peter-pan-grundschule.de>'
 EMAIL_OVERRIDE_ADDRESS = None
 EMAIL_FOOTER = ""
 EMAIL_BACKEND = "post_office.EmailBackend"

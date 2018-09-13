@@ -1,24 +1,30 @@
 <template lang="pug">
   div
     v-container(fluid grid-list-md)
-      img.elfo(src="/img/elfo.png")
-      h1.title Weihnachten fällt AUS!
+      img.elfo(src="img/elfo.png")
 
       br
       p.
-        Vielen Dank das Sie uns buchen möchten!
-        #[br]#[br]
-        Bitte wählen Sie einen Veranstaltungstag, füllen das untenstehnde Formular aus
-        und drücken dann auf "BUCHEN". Das Eintrittsgeld beträgt für Kinder und Erwachsene
-        jeweils 3,- €, wobei pro 10 Kinder ein Erwachsener frei ist. #[br]
-        Sie erhalten nach der Buchung eine Bestätigungs-E-Mail mit den Kontodaten.
-        Bitte überweisen Sie den Betrag innerhalb von 5 Tagen. Eine Stornierung ist nicht möglich.
-        Sobald das Geld auf unserem Konto eingegangens ist, erhalten Sie eine weitere E-Mail
-        mit Ihrer Buchungsbestätigung. #[br]
-        Bringen Sie diese bitte am Veranstaltungstag mit.
-        #[br]#[br]
-        Mit freundlichen Grüßen #[br]
-        Ihr Musical AG Team
+        Das Musical AG Team freut sich auf Ihren Besuch des Musicals.
+
+      h1 Musical:
+        span.title  "Weihnachten fällt AUS"!
+
+      p.
+        #[br]
+        Beim Weihnachtsmann ist die Hölle los. Sein wichtigster Elf hat die Lust an Weihnachten verloren. Wird das Weihnachtsfest nun ausfallen?#[br]
+        Das erfahren Sie und Ihre Kinder an einem der unten genannten Termine.#[br]
+        #[br]
+        Eintritt nur: #[strong 3,- € *]#[br]
+        #[br]
+        #[strong In 4 einfachen Schritten erhalten Sie die Tickets:]
+      ul
+        li Bitte wählen Sie den gewünschten Veranstaltungstag und füllen das untenstehnde Formular aus und klicken dann auf "BUCHEN".#[br]
+        li Sie erhalten nach der Buchung eine Bestätigungs-E-Mail mit den Kontodaten. Bitte überweisen Sie den Betrag innerhalb von 5 Tagen.#[br]
+        li Eine Stornierung ist nicht möglich. Sobald das Geld auf unserem Konto eingegangens ist, erhalten Sie eine weitere E-Mail mit Ihrer Buchungsbestätigung.#[br]
+        li Bringen Sie die ausgedruckte Buchungsbestätigung bitte am Veranstaltungstag mit. #[br]
+
+      p #[strong *] Für Kinder und Erwachsene, wobei pro 10 Kinder ein Erwachsener frei ist.
 
       div.spacer
 
@@ -30,9 +36,11 @@
             v-card-title
               div
                 h3.headline.mb-0 {{ event.start | moment("D.M.Y") }}
-                div {{ event.available_places}} freie Plätze
-                div {{ event.start | moment("HH:mm") }} Uhr, Jugendfreizeiteinrichtung FAIR
-                div Marzahner Promenade 51, 12679 Berlin
+                div {{ event.available_places}}
+                  span(v-if="event.available_places === 1")  freier Platz
+                  span(v-else)  freie Plätze
+                div {{ event.start | moment("HH:mm") }} Uhr, Jugendfreizeiteinrichtung&nbsp;FAIR
+                div Marzahner Promenade 51, 12679&nbsp;Berlin
 
       br
 
@@ -120,10 +128,6 @@ export default {
     submit () {
       // if (this.$refs.form.validate()) {
 
-      if (!this.selectedEvent.for_schools) {
-        this.form.class_name = 'privat'
-      }
-
       this.form.event = this.selectedEvent.id
       this.form.submit('post', 'inquiries').then((response) => {
         this.$router.push('/done')
@@ -161,6 +165,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
+ul
+  margin: 1em 0
+
+h1
+  font-size: 20px
 .title
   color: #d3353d
 
@@ -174,7 +183,6 @@ export default {
     margin: 0 auto
     display: block
     margin-bottom: 30px
-
 
 .spacer
   clear: both
