@@ -1,7 +1,6 @@
 <template lang="pug">
   div
     v-container(fluid grid-list-md)
-      img.elfo(src="img/elfo.png")
 
       br
       p.
@@ -9,6 +8,7 @@
 
       h1 Musical:
         span.title  "Weihnachten fällt AUS"!
+      img.elfo(src="img/elfo.png")
 
       p.
         #[br]
@@ -180,9 +180,8 @@ h1
 @media screen and (max-width: 799px)
   .elfo
     height: 200px
-    margin: 0 auto
+    margin: 15px auto
     display: block
-    margin-bottom: 30px
 
 .spacer
   clear: both
