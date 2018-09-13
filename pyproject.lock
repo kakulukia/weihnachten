@@ -240,6 +240,15 @@ version = "2.2.0"
 django-picklefield = "*"
 
 [[package]]
+category = "main"
+description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
+name = "django-cors-headers"
+optional = false
+platform = "any"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.4.0"
+
+[[package]]
 category = "dev"
 description = "A configurable set of panels that display various debug information about the current request/response."
 name = "django-debug-toolbar"
@@ -879,7 +888,7 @@ version = "0.1.7"
 python = ">=3.3"
 
 [metadata]
-content-hash = "5da2acbbcf92afbf234e4038982ddfb71aa9eb1244cb97e458c2b0001cfeda46"
+content-hash = "8fc735987f2e53bb825d364ec5f3d712ec1b9dddaecd7c14ec9b5f6079ce60b0"
 platform = "*"
 python-versions = "3.6"
 
@@ -905,6 +914,7 @@ django-appconf = ["6a4d9aea683b4c224d97ab8ee11ad2d29a37072c0c6c509896dd9857466fb
 django-axes = ["155e12f95d0691ac15fe68c7274752356c371df93e8ac97bd1c1629ef682cf50", "4129f6fa089778a4be11c372e3398e85946a369ad3b9a6a642bcce774db81f4a"]
 django-compressor = ["7732676cfb9d58498dfb522b036f75f3f253f72ea1345ac036434fdc418c2e57", "9616570e5b08e92fa9eadc7a1b1b49639cce07ef392fc27c74230ab08075b30f"]
 django-constance = ["1d74fa615ee6c69512faa214ec7b4962aa039dfe802e967972c3fbdad7852977", "fe601fe384d1629f6f0460175e4ce3d66e8177654525bddd4bdb68025c816adc"]
+django-cors-headers = ["5545009c9b233ea7e70da7dbab7cb1c12afa01279895086f98ec243d7eab46fa", "c4c2ee97139d18541a1be7d96fe337d1694623816d83f53cb7c00da9b94acae1"]
 django-debug-toolbar = ["4af2a4e1e932dadbda197b18585962d4fc20172b4e5a479490bc659fe998864d", "d9ea75659f76d8f1e3eb8f390b47fc5bad0908d949c34a8a3c4c87978eb40a0f"]
 django-extensions = ["c3c8524056ab1174c6fc769b0599e60f7e7797ce34f38db2effc48885a0a982c", "e279344c6d825adb27694755aa924702d3cc401f8fad5ad9ef2d577948778a5f"]
 django-ipware = ["a7c7a8fd019dbdc9c357e6e582f65034e897572fc79a7e467674efa8aef9d00b"]

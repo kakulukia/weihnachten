@@ -1,14 +1,15 @@
 uwsgi:
         project: weihnachten
         base: /opt
-
+        thunder-lock: true
         master: true
         processes: 5
+
         vaccum: true
         chmod-socket: 666
         uid: www-data
         gid: www-data
-        socket: %(base)/www/sockets/%(project).sock
+        socket: /tmp/%(project).sock
         chdir: %(base)/www/%(project)
         pythonpath: %(base)/www/%(project)
         home: %(chdir)/.venv/
