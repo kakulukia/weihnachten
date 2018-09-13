@@ -6,7 +6,8 @@ from flea_market.models import Inquiry, Event
 
 @admin.register(Inquiry)
 class MarketInquiryAdmin(admin.ModelAdmin):
-    list_display = ['created', 'first_name', 'last_name', 'email', 'phone', 'paid']
+    list_display = ['created', 'first_name', 'last_name', 'email', 'phone', 'class_name', 'paid']
+    list_filter = ['event']
 
 
 @admin.register(Event)
