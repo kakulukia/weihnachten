@@ -1,0 +1,19 @@
+table {
+  border-collapse: collapse;
+  margin-top: 2em;
+  width: 100%; }
+  table tr:first-child {
+    border-bottom: 1px solid black; }
+  table tr {
+    border-bottom: 1px solid #bbb; }
+  table td, table th {
+    padding: 4px 10px; }
+  table th:last-of-type, table td:last-of-type {
+    text-align: center; }
+  table .checkbox {
+    width: 17px;
+    height: 17px;
+    margin: 0 auto;
+    border: 1px solid black; }
+
+/*# sourceMappingURL=pdf.css.map */

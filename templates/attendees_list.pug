@@ -1,0 +1,33 @@
+!!!5
+
+html
+  head
+    style.
+      {{ styles }}
+  body
+    h1 Weihnachten fällt aus!
+    span vom {{ event.start | date:"d. F Y" }} (Stand {% now "d. F" %})
+
+    table
+      tr
+        th #
+        th Vorname
+        th Nachname
+        th Kinder
+        th Erw.
+        th Bezahlt
+      for inquiry in inquiries
+        tr
+          td {{ inquiry.id }}
+          td {{ inquiry.first_name }}
+          td {{ inquiry.last_name }}
+          td {{ inquiry.kids }}
+          td {{ inquiry.adults }}
+          td.paid
+            if inquiry.paid
+              | X
+            else
+              .checkbox
+    br
+    br
+    b Anzahl der Gäste insgesamt: {{ event.taken_places }}

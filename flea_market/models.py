@@ -1,12 +1,15 @@
+import os
 from uuid import uuid4
 
 import pendulum
+import weasyprint
 from constance import config
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.db.models import Sum
 from django.template.defaultfilters import date as date_format
+from django.template.loader import render_to_string
 from django.utils.translation import activate
 from django_undeletable.models import BaseModel, DataManager
 from post_office import mail
@@ -31,9 +34,23 @@ class Event(BaseModel):
         return pendulum.instance(self.start).start_of('day').subtract(days=config.MARKET_CANCEL_DURATION)
 
     @property
+    def taken_places(self):
+        places = self.inquiries.aggregate(kids=Sum('kids'), adults=Sum('adults'))
+        return (places['kids'] or 0) + (places['adults'] or 0)
+
+    @property
     def available_places(self):
         places = self.inquiries.aggregate(kids=Sum('kids'), adults=Sum('adults'))
         return self.location_size - (places['kids'] or 0) - (places['adults'] or 0)
+    available_places.fget.short_description = 'Freie Plätze'
+
+    def get_pdf(self):
+        styles = os.path.join(settings.BASE_DIR, 'assets/css/pdf.css')
+        activate('de')
+        html = render_to_string('attendees_list.pug', {
+            'event': self, 'inquiries': self.inquiries.all().order_by('last_name')})
+        pdf = weasyprint.HTML(string=html).write_pdf(stylesheets=[styles])
+        return pdf
 
 
 class InquiryDataManager(DataManager):

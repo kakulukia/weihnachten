@@ -24,7 +24,9 @@
         li Eine Stornierung ist nicht möglich. Sobald das Geld auf unserem Konto eingegangens ist, erhalten Sie eine weitere E-Mail mit Ihrer Buchungsbestätigung.#[br]
         li Bringen Sie die ausgedruckte Buchungsbestätigung bitte am Veranstaltungstag mit. #[br]
 
-      p #[strong *] Für Kinder und Erwachsene, wobei pro 10 Kinder ein Erwachsener frei ist.
+      p.
+        #[strong *] Für Kinder und Erwachsene, wobei pro 10 Kinder ein Erwachsener frei ist.
+        #[br] #[strong.none *] Diese Veranstaltung kann nicht über BUT abgerechnet werden.
 
       div.spacer
 
@@ -79,7 +81,7 @@
               @focus="form.errors.clear('adults')")
           v-flex(xs12 sm6)
             v-text-field(
-              label="Schule / Klasse" v-model="form.class_name" required
+              label="Schule / Klasse (bitte nur ausfüllen wenn vorhanden)" v-model="form.class_name" required
               :error-messages="form.errors.get('class_name')"
               @focus="form.errors.clear('class_name')")
 
@@ -137,7 +139,7 @@ export default {
       })
     },
     showForm: function () {
-      setTimeout(() => document.getElementById('form').scrollIntoView({behavior: "smooth"}), 50)
+      setTimeout(() => document.getElementById('form').scrollIntoView({ behavior: 'smooth' }), 50)
     }
   },
   computed: {
@@ -168,6 +170,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
+.none
+  color: #fafafa
 ul
   margin: 1em 0
 
